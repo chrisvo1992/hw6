@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<h1>Workout Tracker</h1>
+<body>
+    <div>
+        <fieldset>
+            <label>Enter new entry: </label>
+            <form action="/" method="POST">
+                <label>Name</label>
+                <input type="text" id="name" name='name'> <br>
+                <label>Reps</label>
+                <input type="text" id="reps" name='reps'> <br>
+                <label>Weight</label>
+                <input type="text" id="weight" name='weight'> <br>
+                <label>Date (must be "year-month-date")</label>
+                <input type="text" id="date" name='date'><br>
+                <label>unit (1 for lbs, 0 for kgs)</label>
+                <input type="text" id="unit" name='unit'>
+                <br>
+                <input type='submit' id='new_entry' name='Add Item'>
+            </form>
+           
+        </fieldset>
+    </div>
+    <br>
+    <table border="1px solid black">
+    <tr>
+        <th> Name </th>
+        <th> Reps </th>
+        <th> Weight </th>
+        <th> Date </th>
+        <th> Unit (1= lbs, 0 = Kgs) </th>
+    </tr>
+    {{#each results}}
+    <tr>
+        <td>{{this.name}}</td> 
+        <td>{{this.reps}}</td>
+        <td>{{this.weight}}</td>
+        <td>{{this.date}}</td>
+        <td>{{this.lbs}}</td>
+        <td>
+            <form action="/" method="POST">
+            <input type="submit"  name='delete' value='Delete Row'><br>
+            <input type='hidden' name='delete'value={{this.id}}>
+            </form>
+            <form action="/" method="POST">
+            <input type="submit" name='edit' value='Edit Row'>
+            <input type='hidden' name='edit' value={{this.id}}>
+            </form>
+        </td>
+    </tr>
+    {{/each}}
+
+    </table>
+    <script src='/domhw6.js'></script>
+</body>
+</html>
+
+
+
+
